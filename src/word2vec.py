@@ -5,7 +5,8 @@ from multiprocessing import cpu_count
 import pandas as pd
 import numpy as np
 
-path = '../data/{}/{}'
+path_train = '../data/semi/folds/{}/{}'
+path_test = '../data/precompetition/{}/{}'
 
 
 def train_w2v(latent_dim=200):
@@ -14,12 +15,12 @@ def train_w2v(latent_dim=200):
         print(col)
         N = None
         corpus = pd.concat([
-            pd.read_csv(path.format('fold_1', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
-            pd.read_csv(path.format('fold_2', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
-            pd.read_csv(path.format('fold_3', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
-            pd.read_csv(path.format('fold_4', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
-            pd.read_csv(path.format('fold_5', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
-            pd.read_csv(path.format('test_preliminary', 'origin_feature_reindexed_fromzero.csv'), usecols=[col],
+            pd.read_csv(path_train.format('fold_1', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
+            pd.read_csv(path_train.format('fold_2', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
+            pd.read_csv(path_train.format('fold_3', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
+            pd.read_csv(path_train.format('fold_4', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
+            pd.read_csv(path_train.format('fold_5', 'origin_feature_reindexed_fromzero.csv'), usecols=[col], nrows=N),
+            pd.read_csv(path_test.format('test_preliminary', 'origin_feature_reindexed_fromzero.csv'), usecols=[col],
                         nrows=N),
         ], axis=0)
 
