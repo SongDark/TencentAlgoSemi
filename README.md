@@ -56,8 +56,20 @@ $   python feature_count.py
 $   python data_reindexed.py
 ```
 
-## 2. 线性模型（预测值用于Stacking）
-在 `data/semi/folds/fold_*/` 下产生 `sklearn_pred_feat.csv`
+## 2. 预训练word2vec词向量
+在 `models/w2v/` 下产生 `w2v_embeddings_*_p20200628.npy`
 ```shell
-$   python stacking_from_linear.py
+$   python word2vec.py
+```
+
+## 3. 模型训练
+在 `models/` 下产生 `model_{version}.h`
+```shell
+$   python model_esim.py
+```
+
+## 4. 模型预测
+在 `result/` 下产生 `proba_*.csv` 和 `valid_proba_*.csv`
+```shell
+$   python model_esim.py
 ```
