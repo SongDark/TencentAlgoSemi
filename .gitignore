@@ -14,6 +14,7 @@ data/semi/folds/fold_*/*csv
 data/semi/stacking/*csv 
 data/semi/test_preliminary/*csv
 data/semi/train_semi_final/*csv
+data/semi/mid/*csv
 models/esim_concat/*h
 models/sklearn_linear/*model
 models/lgbm/*.txt
