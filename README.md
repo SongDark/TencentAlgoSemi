@@ -49,7 +49,25 @@ $   python feature_count.py
 ```
 
 ### 重映射
-在 `data/semi/fold_*` 下产生 `origin_feature_reindexed_fromzero.csv`
+在 `data/semi/folds/fold_*` 下产生 `origin_feature_reindexed_fromzero.csv`
 ```shell
 $   python data_reindexed.py
+```
+
+## 2. 预训练word2vec词向量
+在 `models/w2v/` 下产生 `w2v_embeddings_*_p20200628.npy`
+```shell
+$   python word2vec.py
+```
+
+## 3. 模型训练
+在 `models/` 下产生 `model_{version}.h`
+```shell
+$   python model_esim.py
+```
+
+## 4. 模型预测
+在 `result/` 下产生 `proba_*.csv` 和 `valid_proba_*.csv`
+```shell
+$   python model_esim.py
 ```
