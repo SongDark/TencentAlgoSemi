@@ -41,16 +41,5 @@ python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 2 --
 python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
 python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
 python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-echo "train transformer"
-python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
-python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
 echo "stacking and make submission"
 python stacking_from_nn.py 

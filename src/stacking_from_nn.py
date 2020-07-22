@@ -10,6 +10,7 @@ from sklearn.externals import joblib
 AGE_PROB_COLS = ['predicted_age_%d' % (i+1) for i in range(10)]
 GENDER_PROB_COLS = ['predicted_gender_%d' % (i+1) for i in range(2)]
 
+# cnn + esim + esim_concat 的stacking最佳
 STACKING_FILES = {
     'cnn': {'valid':['../result/valid_proba_cnn_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1], 
             'test':['../result/proba_cnn_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1]},
@@ -17,8 +18,8 @@ STACKING_FILES = {
                    'test':['../result/proba_esim_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1]},
     'sklearn_concat_esim': {'valid':['../result/valid_prob_{}_p20200713.csv'.format(i) for i in np.arange(5) + 1], 
                             'test':['../result/test_prob_{}_p20200713.csv'.format(i) for i in np.arange(5) + 1]},
-    'transformer': {'valid':['../result/valid_proba_multihead_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1],
-                    'test':['../result/proba_multihead_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1]},
+    # 'transformer': {'valid':['../result/valid_proba_multihead_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1],
+    #                 'test':['../result/proba_multihead_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1]},
 }
 
 
