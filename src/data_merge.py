@@ -10,11 +10,6 @@ def merge(phase='valid_offline'):
     :param phase: 训练集/验证集/测试集的文件夹名
     :return:
     """
-    # def func(x):
-    #     res = set(x)
-    #     if "\\N" in res:
-    #         res.remove("\\N")
-    #     return " ".join(list(res))
     def func(x):
         return " ".join(list(x))
 
