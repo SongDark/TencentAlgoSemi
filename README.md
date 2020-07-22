@@ -27,10 +27,13 @@ data # 数据
 |--- click_log.csv
 |--- user.csv
 |-- test_preliminary # 同初赛
+|--- origin_feature_reindexed_fromzero.csv
+|--- sklearn_pred_feat.csv
 |-- dict # 字典数据
 |-- folds # 训练集
 |--- fold_1
 |---- origin_feature_reindexed_fromzero.csv
+|---- sklearn_pred_feat.csv
 |--- fold_2
 |--- fold_3
 |--- fold_4
@@ -89,11 +92,11 @@ $   python word2vec.py
 ## 3. 模型训练
 在 `models/` 下产生 `model_{version}_fold{k}.h`
 ```shell
-$	python esim_concat.py train_kfold_k 1 p20200713
-$	python esim_concat.py train_kfold_k 2 p20200713
-$	python esim_concat.py train_kfold_k 3 p20200713
-$	python esim_concat.py train_kfold_k 4 p20200713
-$	python esim_concat.py train_kfold_k 5 p20200713
+$   python esim_concat.py train_kfold_k 1 p20200713
+$   python esim_concat.py train_kfold_k 2 p20200713
+$   python esim_concat.py train_kfold_k 3 p20200713
+$   python esim_concat.py train_kfold_k 4 p20200713
+$   python esim_concat.py train_kfold_k 5 p20200713
 
 $   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024
 $   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024
@@ -117,11 +120,11 @@ $   python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200
 ## 4. 模型预测
 在 `result/` 下产生测试集的预测概率 `proba_{version}_fold{k}.csv` 和验证集的预测概率 `valid_proba_{version}_fold{k}.csv`
 ```shell
-$	python esim_concat.py predict_kfold_k 1 p20200713
-$	python esim_concat.py predict_kfold_k 2 p20200713
-$	python esim_concat.py predict_kfold_k 3 p20200713
-$	python esim_concat.py predict_kfold_k 4 p20200713
-$	python esim_concat.py predict_kfold_k 5 p20200713
+$   python esim_concat.py predict_kfold_k 1 p20200713
+$   python esim_concat.py predict_kfold_k 2 p20200713
+$   python esim_concat.py predict_kfold_k 3 p20200713
+$   python esim_concat.py predict_kfold_k 4 p20200713
+$   python esim_concat.py predict_kfold_k 5 p20200713
 
 $   python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024
 $   python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024
@@ -140,4 +143,9 @@ $   python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_202007
 $   python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
 $   python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
 $   python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+```
+
+## 5. Stacking 并产生最终提交结果
+```shell
+$   python stacking_from_nn.py
 ```
