@@ -49,6 +49,7 @@ $   python feature_count.py
 ```
 
 ### 重映射
-```$shell
+在 `data/semi/fold_*` 下产生 `origin_feature_reindexed_fromzero.csv`
+```shell
 $   python data_reindexed.py
 ```
