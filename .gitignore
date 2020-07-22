@@ -6,4 +6,15 @@
 *.npz
 *.m
 models/w2v/w2v*
-data/*
+# data/*
+data/precompetition/test_preliminary/*csv
+data/precompetition/train_preliminary/*csv
+data/semi/dict/*pkl
+data/semi/folds/fold_*/*csv
+data/semi/stacking/*csv 
+data/semi/test_preliminary/*csv
+data/semi/train_semi_final/*csv
+models/esim_concat/*h
+models/sklearn_linear/*model
+models/lgbm/*.txt
+models/tfidf/*npz
