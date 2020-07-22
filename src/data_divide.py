@@ -40,7 +40,7 @@ def divide_into_folds_semi(fold=5):
     for i in range(fold):
         train_user_log.loc[fold_index_dict[i], 'fold'] = i + 1 #根据各组的index，设置其'fold'列的值，值为1～5
         
-    train_user_log.to_csv("../data/semi/train_preliminary/user_divided.csv", index=False)
+    # train_user_log.to_csv("../data/semi/train_preliminary/user_divided.csv", index=False)
 
     # train_user_log = pd.read_csv("../data/semi/train_preliminary/user_divided.csv")
     # print(train_user_log[['user_id', 'fold']].groupby('fold').count().reset_index())
