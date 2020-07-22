@@ -1,8 +1,9 @@
 .vscode
+.idea
 *.txt
 *.pkl
 *.npy
 *.npz
 *.m
-models/*
+models/w2v/*
 data/*
