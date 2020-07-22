@@ -19,8 +19,10 @@ data # 数据
 |--- click_log.csv
 |--- user.csv
 |-- dict # 字典数据
+|--- feature_cnt.pkl
 |-- folds # 训练集
 |--- fold_1
+|---- origin_feature_reindexed_fromzero.csv
 |--- fold_2
 |--- fold_3
 |--- fold_4
@@ -49,9 +51,15 @@ $   python feature_count.py
 ```
 
 ### 重映射
-在 `data/semi/folds/fold_*` 下产生 `origin_feature_reindexed_fromzero.csv`
+在 `data/semi/folds/fold_*/` 下产生 `origin_feature_reindexed_fromzero.csv`
 ```shell
 $   python data_reindexed.py
+```
+
+### 线性模型（预测值用于Stacking）
+在 `data/semi/folds/fold_*/` 下产生 `sklearn_pred_feat.csv`
+```shell
+$   python stacking_from_linear.py
 ```
 
 ## 2. 预训练word2vec词向量

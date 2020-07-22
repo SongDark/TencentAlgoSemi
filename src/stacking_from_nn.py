@@ -11,14 +11,14 @@ AGE_PROB_COLS = ['predicted_age_%d' % (i+1) for i in range(10)]
 GENDER_PROB_COLS = ['predicted_gender_%d' % (i+1) for i in range(2)]
 
 STACKING_FILES = {
-    'cnn': {'valid':['../data/semi/submission/cnn/valid_proba_cnn_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1], 
-            'test':['../data/semi/submission/cnn/proba_cnn_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1]},
-    'esim_naive': {'valid':['../data/semi/submission/esim_naive/valid_proba_esim_multigpu_foldk_20200703fold{}.csv'.format(i) for i in np.arange(5) + 1], 
-                   'test':['../data/semi/submission/esim_naive/proba_esim_multigpu_foldk_20200703fold{}.csv'.format(i) for i in np.arange(5) + 1]},
-    'sklearn_concat_esim': {'valid':['../data/semi/submission/sklearn_concat_esim/valid_prob_{}_p20200713.csv'.format(i) for i in np.arange(5) + 1], 
-                            'test':['../data/semi/submission/sklearn_concat_esim/test_prob_{}_p20200713.csv'.format(i) for i in np.arange(5) + 1]},
-    'transformer': {'valid':['../data/semi/submission/transformer_20200717/valid_proba_transformer_20200717fold{}.csv'.format(i) for i in np.arange(5) + 1],
-                    'test':['../data/semi/submission/transformer_20200717/proba_transformer_20200717fold{}.csv'.format(i) for i in np.arange(5) + 1]},
+    'cnn': {'valid':['../result/valid_proba_cnn_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1], 
+            'test':['../result/proba_cnn_20200716fold{}.csv'.format(i) for i in np.arange(5) + 1]},
+    'esim_naive': {'valid':['../result/valid_proba_esim_multigpu_foldk_20200703fold{}.csv'.format(i) for i in np.arange(5) + 1], 
+                   'test':['../result/proba_esim_multigpu_foldk_20200703fold{}.csv'.format(i) for i in np.arange(5) + 1]},
+    'sklearn_concat_esim': {'valid':['../result/valid_prob_{}_p20200713.csv'.format(i) for i in np.arange(5) + 1], 
+                            'test':['../result/test_prob_{}_p20200713.csv'.format(i) for i in np.arange(5) + 1]},
+    'transformer': {'valid':['../result/valid_proba_transformer_20200717fold{}.csv'.format(i) for i in np.arange(5) + 1],
+                    'test':['../result/proba_transformer_20200717fold{}.csv'.format(i) for i in np.arange(5) + 1]},
 }
 
 
@@ -121,7 +121,7 @@ def lgb_train():
 
         model = lgb.train(age_params, lgb.Dataset(train_feat, train_label), num_boost_round=2000,
                           valid_sets=lgb.Dataset(valid_feat, valid_label), early_stopping_rounds=10)
-        model.save_model("../models_semi/stacking_from_nn/p20200722_6model/model_{}age_fold{}.txt".format(weighted, fold_id))
+        model.save_model("../models/lgbm/model_{}age_fold{}.txt".format(weighted, fold_id))
         train_prob = model.predict(train_feat)
         valid_prob = model.predict(valid_feat)
         print("train:", compute_metrics_multi(train_label, train_prob))
@@ -137,7 +137,7 @@ def lgb_train():
 
         model = lgb.train(gender_params, lgb.Dataset(train_feat, train_label), num_boost_round=2000,
                           valid_sets=lgb.Dataset(valid_feat, valid_label), early_stopping_rounds=10)
-        model.save_model("../models_semi/stacking_from_nn/p20200722_6model/model_{}gender_fold{}.txt".format(weighted, fold_id))
+        model.save_model("../models/lgbm/model_{}gender_fold{}.txt".format(weighted, fold_id))
         model.predict_proba = lambda x: np.vstack([1 - model.predict(x), model.predict(x)]).T
         train_prob = model.predict_proba(train_feat)
         valid_prob = model.predict_proba(valid_feat)
@@ -164,7 +164,7 @@ def lgb_predict():
         valid_feat = train_valid_feat.values[valid_index, 1:]
         valid_label = train_valid_label['age'].values[valid_index] - 1
 
-        model = lgb.Booster(model_file="../models_semi/stacking_from_nn/p20200722_6model/model_{}age_fold{}.txt".format(weighted, fold_id))
+        model = lgb.Booster(model_file="../models/lgbm/model_{}age_fold{}.txt".format(weighted, fold_id))
         valid_prob = model.predict(valid_feat)
         print("valid age", fold_id, compute_metrics_multi(valid_label, valid_prob))
 
@@ -182,7 +182,7 @@ def lgb_predict():
         valid_feat = train_valid_feat.values[valid_index, 1:]
         valid_label = train_valid_label['gender'].values[valid_index] - 1
 
-        model = lgb.Booster(model_file="../models_semi/stacking_from_nn/p20200722_6model/model_{}gender_fold{}.txt".format(weighted, fold_id))
+        model = lgb.Booster(model_file="../models/lgbm/model_{}gender_fold{}.txt".format(weighted, fold_id))
         model.predict_proba = lambda x: np.vstack([1 - model.predict(x), model.predict(x)]).T
         valid_prob = model.predict_proba(valid_feat)
         print("valid gender", fold_id, compute_metrics_multi(valid_label, valid_prob))
@@ -204,7 +204,7 @@ def lgb_predict():
     tmp[0] /= len(test_feat)
     print(tmp)
 
-    test_prob[['user_id', 'predicted_age', 'predicted_gender']].to_csv("../data/semi/submission/stacking_from_nn/6model_submission.csv", index=False)
+    test_prob[['user_id', 'predicted_age', 'predicted_gender']].to_csv("../submission.csv", index=False)
         
 
 

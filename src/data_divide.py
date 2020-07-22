@@ -23,7 +23,6 @@ def divide_into_folds_semi(fold=5):
 
     fold_index_dict = {i : list() for i in range(fold)}
     for i in range(len(labels)): #对于每种age-gender
-        print(i)
         cur_label = labels[i]
 
         current_label_user_index = list(train_user_log[train_user_log['label'] == cur_label].index) #取出该记录的index

@@ -13,11 +13,11 @@ used_cols = ['creative_id', 'advertiser_id', 'ad_id', 'product_id', 'industry']
 full_cols_dict = {'user_id': 0, 'age': 1, 'gender': 2, 'time': 3, 'creative_id': 4, 'click_times': 5, 'ad_id': 6, 'product_id': 7, 'product_category': 8, 'advertiser_id': 9, 'industry': 10}
 full_cols_dict_test = {'user_id': 0, 'time': 1, 'creative_id': 2, 'click_times': 3, 'ad_id': 4, 'product_id': 5, 'product_category': 6, 'advertiser_id': 7, 'industry': 8}
 
-W2V_PATH = '../weights_semi/'
+W2V_PATH = '../models/w2v/'
 W2V_FILE_NAME = 'w2v_embeddings_{col}_p20200628.npy'
 FEAT_PATH = '../data/semi/{}/{}'
-MODEL_PATH = '../models_semi/keras/'
-PRED_PATH = '../predictions/'
+MODEL_PATH = '../models/esim_concat/'
+PRED_PATH = '../result/'
 MAX_SEQ_LEN = 175
 LATENT_DIM = 200
 BATCH_SIZE = 1500
@@ -268,7 +268,7 @@ def predict_test(valid_fold_id, test_seq_paths, test_dense_paths, model_path):
 
 
 if __name__ == '__main__':
-    # python esim_concat.py train_fold_k 1
+    # python esim_concat.py train_kfold_k 1 p20200713
     mode = str(sys.argv[1])
     VERSION = str(sys.argv[3])
     print("mode = %s" % mode)

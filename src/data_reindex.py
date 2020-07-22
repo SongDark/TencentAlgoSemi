@@ -8,7 +8,7 @@ import pickle
 path = '../data/{stage}/{phase}/{file}'
 
 def reindex_fromzero_semi(stage, phase):
-    with open(path.format(stage=stage, phase='dict', file='feature_cnt.pkl'), "rb") as fin:
+    with open('../data/semi/dict/feature_cnt.pkl', "rb") as fin:
         the_dict = pickle.load(fin)
         the_key = sorted([k for k, v in the_dict.items() if v >= 2])
         del the_dict
@@ -41,5 +41,11 @@ if __name__ == '__main__':
     # 训练集
     for i in range(5):
         reindex_fromzero_semi(stage='semi', phase='folds/fold_%d' % (i+1))
+
     # 测试集
-    reindex_fromzero_semi(stage='semi', phase='test_preliminary')
+    reindex_fromzero_semi(stage='precompetition', phase='test_preliminary')
+
+    # copy 到复赛
+    pd.read_csv(path.format(stage='precompetition', phase='test_preliminary', file='origin_feature_reindexed_fromzero.csv')).to_csv(
+        path.format(stage='semi', phase='test_preliminary', file='origin_feature_reindexed_fromzero.csv')
+    )

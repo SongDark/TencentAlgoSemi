@@ -89,7 +89,8 @@ for col in cols:
     discuss_tf = tf.fit_transform(full_click_log[col]).astype(np.float32).tocsr()
     del full_click_log
 
-    save_npz(path.format('test_preliminary', '%s_tfvec_csr.npz' % col), discuss_tf)
+    # save_npz(path.format('test_preliminary', '%s_tfvec_csr.npz' % col), discuss_tf)
+    save_npz('../models/tfidf/%s_tfvec_csr.npz' % col, discuss_tf)
 
 
 #### 训练 sklearn 线性模型
@@ -103,7 +104,8 @@ for col in cols:
         data_size.append(df.shape[0])
     age, gender = train_valid_click_log.age.values - 1, train_valid_click_log.gender.values - 1
     
-    discuss_tf = load_npz(path.format('test_preliminary', '%s_tfvec_csr.npz' % col))
+    # discuss_tf = load_npz(path.format('test_preliminary', '%s_tfvec_csr.npz' % col))
+    discuss_tf = load_npz('../models/tfidf/%s_tfvec_csr.npz' % col)
     print(discuss_tf.dtype)
 
     train_feature = discuss_tf[:sum(data_size)]
@@ -127,7 +129,7 @@ for col in cols:
 
     feat = pd.DataFrame()
     for m in model_list:
-        train_sklearn_model(col + '_' + m[0], m[1], train_feature, age, train_ids)
+        train_sklearn_model(col + '_' + m[0] + '_age', m[1], train_feature, age, train_ids)
         train_sklearn_model(col + '_' + m[0] + '_gender', m[1], train_feature, gender, train_ids)
 
     print(feat.shape)
@@ -155,7 +157,8 @@ for col in cols:
         pos += data_size[i]
     print([(min(x), max(x)) for x in train_ids])
     
-    discuss_tf = load_npz(path.format('test_preliminary', '%s_tfvec_csr.npz' % col))
+    # discuss_tf = load_npz(path.format('test_preliminary', '%s_tfvec_csr.npz' % col))
+    discuss_tf = load_npz('../models/tfidf/%s_tfvec_csr.npz' % col)
     train_feature = discuss_tf[:sum(data_size)]
     test_feature = discuss_tf[sum(data_size):]
 
@@ -169,7 +172,7 @@ for col in cols:
     for model in model_list:
         print(model[0])
         # age
-        pred_train, pred_test = predict_sklearn_model(col + '_' + model[0], train_feature, age, test_feature, train_ids)
+        pred_train, pred_test = predict_sklearn_model(col + '_' + model[0] + '_age', train_feature, age, test_feature, train_ids)
         print([x.shape for x in pred_train], pred_test.shape)
 
         for fold in range(5):
@@ -189,6 +192,7 @@ for col in cols:
         test_preds = pd.concat([test_preds, pred_test], 1)
 
         print([x.shape for x in train_preds], test_preds.shape)
+
 # 保存
 for fold in range(5):
     train_preds[fold].to_csv(path.format("folds/fold_%d" % (fold + 1), "sklearn_pred_feat.csv"), index=False)
