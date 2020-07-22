@@ -4,3 +4,5 @@
 *.npy
 *.npz
 *.m
+models/*
+data/*
