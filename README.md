@@ -21,6 +21,7 @@ data # 数据
 |-- dict # 字典数据
 |-- folds # 训练集
 |--- fold_1
+|---- origin_feature_reindexed_fromzero.csv
 |--- fold_2
 |--- fold_3
 |--- fold_4
