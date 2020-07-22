@@ -71,7 +71,23 @@ $   python word2vec.py
 ## 3. 模型训练
 在 `models/` 下产生 `model_{version}.h`
 ```shell
-$   python model_esim.py
+$   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024
+$   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024
+$   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024
+$   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024
+$   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024
+
+$   python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+$   python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+$   python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+$   python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+$   python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+
+$   python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+$   python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+$   python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+$   python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+$   python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
 ```
 
 ## 4. 模型预测
