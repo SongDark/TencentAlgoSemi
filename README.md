@@ -28,6 +28,13 @@ data # 数据
 |--- fold_4
 |--- fold_5
 models # 模型
+|- esim_concat
+|- sklearn_linear
+|- lgbm
+|- tfidf
+|- w2v
+result # 中间结果
+submission.csv  # 最终提交
 ``` 
 
 ## 1. 数据预处理
@@ -57,6 +64,7 @@ $   python data_reindexed.py
 ```
 
 ### 线性模型（预测值用于Stacking）
+在 `models/tfidf/` 下产生 `*_tfvec_csr.npz`
 在 `data/semi/folds/fold_*/` 下产生 `sklearn_pred_feat.csv`
 ```shell
 $   python stacking_from_linear.py
