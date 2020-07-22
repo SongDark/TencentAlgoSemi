@@ -19,3 +19,4 @@ models/esim_concat/*h
 models/sklearn_linear/*model
 models/lgbm/*.txt
 models/tfidf/*npz
+models/*.h

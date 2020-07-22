@@ -19,6 +19,38 @@ python esim_concat.py predict_kfold_k 2 p20200713
 python esim_concat.py predict_kfold_k 3 p20200713
 python esim_concat.py predict_kfold_k 4 p20200713
 python esim_concat.py predict_kfold_k 5 p20200713
-echo "train nn"
-echo "stacking"
+echo "train esim"
+python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024
+python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024
+echo "train cnn"
+python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE train_kfold_k --VERSION cnn_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_esim_cnn.py --MODE pred_kfold_k --VERSION cnn_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+echo "train transformer"
+python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 4 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+python model_multihead_cnn.py --MODE pred_kfold_k --VERSION multihead_20200716 --FOLDK 5 --NUM_GPU 1 --BATCH_SIZE 1024 --use_CuDNNLSTM True
+echo "stacking and make submission"
 python stacking_from_nn.py 

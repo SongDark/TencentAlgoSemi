@@ -1,5 +1,13 @@
 # Readme
 
+# 环境
+
+- tensorflow==1.12
+- keras==2.2.4
+- gensim==3.8.1
+- sklearn==0.22.2.post1
+- lightgbm==2.3.1
+
 # 数据结构
 
 ```
@@ -81,6 +89,12 @@ $   python word2vec.py
 ## 3. 模型训练
 在 `models/` 下产生 `model_{version}_fold{k}.h`
 ```shell
+$	python esim_concat.py train_kfold_k 1 p20200713
+$	python esim_concat.py train_kfold_k 2 p20200713
+$	python esim_concat.py train_kfold_k 3 p20200713
+$	python esim_concat.py train_kfold_k 4 p20200713
+$	python esim_concat.py train_kfold_k 5 p20200713
+
 $   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024
 $   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024
 $   python model_esim.py --MODE train_kfold_k --VERSION esim_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024
@@ -103,6 +117,12 @@ $   python model_multihead_cnn.py --MODE train_kfold_k --VERSION multihead_20200
 ## 4. 模型预测
 在 `result/` 下产生测试集的预测概率 `proba_{version}_fold{k}.csv` 和验证集的预测概率 `valid_proba_{version}_fold{k}.csv`
 ```shell
+$	python esim_concat.py predict_kfold_k 1 p20200713
+$	python esim_concat.py predict_kfold_k 2 p20200713
+$	python esim_concat.py predict_kfold_k 3 p20200713
+$	python esim_concat.py predict_kfold_k 4 p20200713
+$	python esim_concat.py predict_kfold_k 5 p20200713
+
 $   python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 1 --NUM_GPU 1 --BATCH_SIZE 1024
 $   python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 2 --NUM_GPU 1 --BATCH_SIZE 1024
 $   python model_esim.py --MODE pred_kfold_k --VERSION esim_20200716 --FOLDK 3 --NUM_GPU 1 --BATCH_SIZE 1024
