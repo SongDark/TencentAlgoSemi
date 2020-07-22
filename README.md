@@ -16,6 +16,9 @@
 
 # 代码/数据结构
 
+## 数据准备
+把解压后初赛的数据放在`data/precompetition/`下，复赛的数据放在`data/semi/`下。
+
 ```
 src # 代码
 data # 数据
