@@ -27,6 +27,7 @@ data # 数据
 |--- fold_3
 |--- fold_4
 |--- fold_5
+|-- mid # 中间结果
 models # 模型
 |- esim_concat
 |- sklearn_linear
