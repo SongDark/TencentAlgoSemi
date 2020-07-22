@@ -46,35 +46,35 @@ parser.add_argument('--MAX_SEQ_LEN', default=175, type=int,
                    help='number of training steps')
 parser.add_argument('--TRAIN_EPOCH', default=20, type=int,
                    help='number of training steps')
-parser.add_argument('--W2V_PATH', default='./w2v/', type=str,
+parser.add_argument('--W2V_PATH', default='../models/w2v/', type=str,
                    help='dir path to the w2v embedding file') #'${cos}/semifinal/w2v/'
 parser.add_argument('--W2V_FILE_NAME', default='w2v_embeddings_{col}_p20200628.npy', type=str,
                    help='file name of the w2v embedding file')
-parser.add_argument('--TRAIN_FOLD1_PATH', default='./data/fold_1/', type=str,
+parser.add_argument('--TRAIN_FOLD1_PATH', default='../data/semi/folds/fold_1/', type=str,
                    help='dir path to the train data fold1 file')  #'${cos}/semifinal/data/fold_1/'
-parser.add_argument('--TRAIN_FOLD2_PATH', default='./data/fold_2/', type=str,
+parser.add_argument('--TRAIN_FOLD2_PATH', default='../data/semi/folds/fold_2/', type=str,
                    help='dir path to the train data fold2 file')  #'${cos}/semifinal/data/fold_2/'
-parser.add_argument('--TRAIN_FOLD3_PATH', default='./data/fold_3/', type=str,
+parser.add_argument('--TRAIN_FOLD3_PATH', default='../data/semi/folds/fold_3/', type=str,
                    help='dir path to the train data fold3 file')  #'${cos}/semifinal/data/fold_3/'
-parser.add_argument('--TRAIN_FOLD4_PATH', default='./data/fold_4/', type=str,
+parser.add_argument('--TRAIN_FOLD4_PATH', default='../data/semi/folds/fold_4/', type=str,
                    help='dir path to the train data fold4 file')  #'${cos}/semifinal/data/fold_4/'
-parser.add_argument('--TRAIN_FOLD5_PATH', default='./data/fold_5/', type=str,
+parser.add_argument('--TRAIN_FOLD5_PATH', default='../data/semi/folds/fold_5/', type=str,
                    help='dir path to the train data fold5 file')  #'${cos}/semifinal/data/fold_5/'
-parser.add_argument('--TEST_PATH', default='./data/test_preliminary/', type=str,
+parser.add_argument('--TEST_PATH', default='../data/precompetition/test_preliminary/', type=str,
                    help='dir path to the test data file')  #'${cos}/semifinal/data/test_preliminary/'
 parser.add_argument('--DATA_FILE_NAME', default='origin_feature_reindexed_fromzero.csv', type=str,
                    help='file name of the data file')
-parser.add_argument('--MODEL_PATH', default='./model/', type=str,
+parser.add_argument('--MODEL_PATH', default='../models/', type=str,
                    help='dir path to export the train model') #'${cos}/semifinal/model/'
 parser.add_argument('--MODEL_FILE_NAME', default='model_{version}.h', type=str,
                     help='file name of model')
 parser.add_argument('--MODEL_KFOLD_FILE_NAME', default='model_{version}_fold{k}.h', type=str,
                     help='file name of model foldk')
-parser.add_argument('--SUBMISSION_PATH', default='./result/',  type=str,
+parser.add_argument('--SUBMISSION_PATH', default='../result/',  type=str,
                    help='dir path to export the result path') #'${cos}/semifinal/result/'
 
 # 中间的输出
-parser.add_argument('--MID_DATA_PATH', default='./data/mid/', type=str,
+parser.add_argument('--MID_DATA_PATH', default='../data/semi/mid/', type=str,
                     help="dir path to mid data") #'${cos}/semifinal/data/mid/'
 parser.add_argument('--MID_DATA_TRAIN_ALL_FILE_NAME', default='data_train_all.csv', type=str,
                     help="file name of train data all")
@@ -84,23 +84,18 @@ parser.add_argument('--MID_DATA_VALID_FOLDK_FILE_NAME', default='data_valid_fold
                     help="file name of valid data foldk")
 
 # 需要改的
-parser.add_argument('--BATCH_SIZE', default=64, type=int,
+parser.add_argument('--BATCH_SIZE', default=1024, type=int,
                    help='batch size')
 parser.add_argument('--NUM_GPU', default=1, type=int,
                    help='num of used gpu')
 parser.add_argument('--MODE', default='train_kfold_k', type=str,
-                    help='train, continue_train, ...')
+                    help='train_kfold_k, continue_train_model_kfold_k, pred_kfold_k')
 parser.add_argument('--VERSION', default='test_20200702', type=str,
                     help='output file version postfix')
 parser.add_argument('--FOLDK', default=1, type=int,
                     help='1,2,3,4,5')
 parser.add_argument('--use_CuDNNLSTM', default=False, type=bool,
                     help="use CuDNNLSTM or not")
-
-
-
-# TRAIN_NUM, VALID_NUM = 719993, 180009 ############？？？？？？？
-
 
 def main(argv):
     args = parser.parse_args(argv[1:])
