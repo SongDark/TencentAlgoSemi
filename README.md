@@ -5,6 +5,9 @@
 
 # 环境
 
+- numpy==1.18.4
+- pandas==0.25.2
+- scipy==1.4.1
 - tensorflow==1.12
 - keras==2.2.4
 - gensim==3.8.1
