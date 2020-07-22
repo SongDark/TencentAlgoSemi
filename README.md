@@ -18,8 +18,8 @@ data # 数据
 |--- ad.csv
 |--- click_log.csv
 |--- user.csv
+|-- test_preliminary # 同初赛
 |-- dict # 字典数据
-|--- feature_cnt.pkl
 |-- folds # 训练集
 |--- fold_1
 |---- origin_feature_reindexed_fromzero.csv
@@ -27,6 +27,7 @@ data # 数据
 |--- fold_3
 |--- fold_4
 |--- fold_5
+|-- stacking # stacking训练数据
 |-- mid # 中间结果
 models # 模型
 |- esim_concat
