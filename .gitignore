@@ -5,5 +5,5 @@
 *.npy
 *.npz
 *.m
-models/w2v/*
+models/w2v/w2v*
 data/*
